@@ -1,19 +1,36 @@
-var img = document.querySelector('img')
-var love = document.getElementById('love')
+const noteMap = {
+  "C": "a",
+  "C#": "d",
+  "D": "e",
+  "D#": "f",
+  "E": "g",
+  "F": "i",
+  "F#": "o",
+  "G": "p",
+  "G#": "q",
+  "A": "r",
+  "A#": "s",
+  "B": "t",
+  "Cc":"u",
+  "Dd":"w",
+  "Ff":"y",
+  "Gg":"a",
+  "Aa":"d",
+};
 
-img.addEventListener('dblclick', function() {
-    love.style.opacity = '1';
-    love.style.transform = 'translate(-50%, -50%) scale(1) rotate(0deg)';
-    setTimeout(function() {
-        love.style.transform = 'translate(-50%, -300%) scale(1) rotate(45deg)';
-    }, 800);
-     setTimeout(function() {
-        love.style.opacity = '0';
-    }, 1000);
-    setTimeout(function() {
-        love.style.transform = 'translate(-50%, -50%) scale(0) rotate(-45deg)';
-    }, 1200);
+function playNote(note) {
+  const audio = new Audio(`${noteMap[note]}.mp3`);
+  audio.currentTime = 0;
+  audio.play();
+}
 
+// Select all piano keys
+const keys = document.querySelectorAll('.key');
 
-
-})
+// Add click event listener to each key
+keys.forEach(key => {
+  key.addEventListener('click', function() {
+    const note = this.getAttribute('data-note');
+    playNote(note);
+  });
+});
