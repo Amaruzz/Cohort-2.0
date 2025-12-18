@@ -1,36 +1,12 @@
-const noteMap = {
-  "C": "a",
-  "C#": "d",
-  "D": "e",
-  "D#": "f",
-  "E": "g",
-  "F": "i",
-  "F#": "o",
-  "G": "p",
-  "G#": "q",
-  "A": "r",
-  "A#": "s",
-  "B": "t",
-  "Cc":"u",
-  "Dd":"w",
-  "Ff":"y",
-  "Gg":"a",
-  "Aa":"d",
-};
+var allbtn=document.querySelectorAll('button')
 
-function playNote(note) {
-  const audio = new Audio(`${noteMap[note]}.mp3`);
-  audio.currentTime = 0;
-  audio.play();
+allbtn.forEach(function(elem){
+    elem.addEventListener('click',function(){
+if(elem.innerHTML== 'Add friend'){
+    elem.innerHTML='Remove'
 }
-
-// Select all piano keys
-const keys = document.querySelectorAll('.key');
-
-// Add click event listener to each key
-keys.forEach(key => {
-  key.addEventListener('click', function() {
-    const note = this.getAttribute('data-note');
-    playNote(note);
-  });
-});
+else{
+elem.innerHTML='Add Friend'
+}
+    })
+})  
